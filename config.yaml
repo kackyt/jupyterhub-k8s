@@ -33,9 +33,21 @@ imagePullSecrets: []
 hub:
   revisionHistoryLimit:
   config:
+    Authenticator:
+      admin_users: ${admin_users}
+    Auth0OAuthenticator:
+      client_id: ${auth0_client_id}
+      client_secret: ${auth0_client_secret}
+      oauth_callback_url: https://${dns_name}/hub/oauth_callback
+      auth0_domain: ${auth0_domain}
+      http_request_kwargs:
+        allow_ipv6: true
+      scope:
+        - openid
+        - email
     JupyterHub:
       admin_access: true
-      authenticator_class: dummy
+      authenticator_class: auth0
   service:
     type: ClusterIP
     annotations: {}
@@ -43,6 +55,10 @@ hub:
       nodePort:
     extraPorts: []
     loadBalancerIP:
+    # ipFamilyPolicy: RequireDualStack
+    # ipFamilies:
+    #   - IPv4
+    #   - IPv6
   baseUrl: /
   cookieSecret:
   initContainers: []
@@ -102,7 +118,7 @@ hub:
     maxUnavailable:
     minAvailable: 1
   networkPolicy:
-    enabled: true
+    enabled: false
     ingress: []
     egress: []
     egressAllowRules:
@@ -192,6 +208,10 @@ proxy:
     extraPorts: []
     loadBalancerIP:
     loadBalancerSourceRanges: []
+    # ipFamilyPolicy: RequireDualStack
+    # ipFamilies:
+    #   - IPv4
+    #   - IPv6
   # chp relates to the proxy pod, which is responsible for routing traffic based
   # on dynamic configuration sent from JupyterHub to CHP's REST API.
   chp:

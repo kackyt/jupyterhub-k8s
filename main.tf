@@ -19,7 +19,13 @@ resource "helm_release" "jupyterhub" {
   version    = "3.2.1"
   namespace  = "ml"
   name       = "jupyterhub"
-  values     = [file("config.yaml")]
+  values = [templatefile("${path.module}/config.yaml", {
+    dns_name            = var.dns_name
+    auth0_domain        = var.auth0_domain
+    auth0_client_id     = var.auth0_client_id
+    auth0_client_secret = var.auth0_client_secret
+    admin_users         = jsonencode(var.admin_users)
+  })]
   depends_on = [
     kubernetes_namespace.ml
   ]
