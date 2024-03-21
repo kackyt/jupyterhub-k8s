@@ -416,8 +416,8 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: quay.io/jupyterhub/k8s-singleuser-sample
-    tag: "3.2.1"
+    name: kackyt/jupyterhub-singleuser-ai
+    tag: "feature-ai-image"
     pullPolicy:
     pullSecrets: []
   startTimeout: 300
@@ -430,7 +430,7 @@ singleuser:
   extraResource:
     limits: {}
     guarantees: {}
-  cmd: jupyterhub-singleuser
+#  cmd: jupyterhub-singleuser
   defaultUrl:
   extraPodConfig: {}
   profileList: []

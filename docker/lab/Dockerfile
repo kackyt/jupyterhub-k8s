@@ -21,4 +21,5 @@ WORKDIR $HOME
 
 RUN bash ./build.sh
 ENTRYPOINT [ "bash", "-c" ]
+EXPOSE 8888
 CMD ["./run.sh"]
