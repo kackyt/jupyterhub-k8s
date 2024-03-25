@@ -409,7 +409,7 @@ singleuser:
       pvcName:
       subPath: "{username}"
     capacity: 10Gi
-    homeMountPath: /home/jovyan
+    homeMountPath: /home/app/share
     dynamic:
       storageClass:
       pvcNameTemplate: claim-{username}{servername}
@@ -418,7 +418,7 @@ singleuser:
   image:
     name: kackyt/jupyterhub-singleuser-ai
     tag: "feature-ai-image"
-    pullPolicy:
+    pullPolicy: Always
     pullSecrets: []
   startTimeout: 300
   cpu:
@@ -430,7 +430,7 @@ singleuser:
   extraResource:
     limits: {}
     guarantees: {}
-#  cmd: jupyterhub-singleuser
+  cmd: "bash -l ./run.sh"
   defaultUrl:
   extraPodConfig: {}
   profileList: []

@@ -20,6 +20,6 @@ USER ${USER}
 WORKDIR $HOME
 
 RUN bash ./build.sh
-ENTRYPOINT [ "bash", "-c" ]
+ENTRYPOINT [ "bash", "-l", "-c" ]
 EXPOSE 8888
-CMD ["./run.sh"]
+CMD ["bash -l run.sh"]
