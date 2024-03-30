@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  lab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "lab"
+    container_name: "lab"
+    ports:
+      - "8888:8888"
+    command: bash
+    tty: true
+    stdin_open: true
