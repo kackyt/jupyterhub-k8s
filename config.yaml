@@ -430,7 +430,7 @@ singleuser:
   extraResource:
     limits: {}
     guarantees: {}
-  cmd: "bash -l ./run.sh"
+  cmd: jupyterhub-singleuser # "jupyter lab --no-browser --ip '*' --allow-root --ServerApp.token=''"
   defaultUrl:
   extraPodConfig: {}
   profileList: []
