@@ -7,6 +7,7 @@ curl -sSf https://rye-up.com/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--y
 
 . $HOME/.rye/env
 
+rye config --set-bool behavior.use-uv=true
 rye sync --no-dev
 
 . .venv/bin/activate
