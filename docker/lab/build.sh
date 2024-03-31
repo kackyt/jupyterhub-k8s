@@ -7,8 +7,8 @@ curl -sSf https://rye-up.com/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--y
 
 . $HOME/.rye/env
 
-#rye config --set-bool behavior.use-uv=true
-rye sync --no-dev --no-lock
+rye config --set-bool behavior.use-uv=true
+HTTP_TIMEOUT=86400 rye sync --no-dev --no-lock --verbose
 
 . .venv/bin/activate
 
