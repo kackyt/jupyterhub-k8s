@@ -29,15 +29,5 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud
     apt-get update -y && \
     apt-get install google-cloud-cli -y --no-install-recommends
 
-# install Nvidia driver
-curl -fSsl -O https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
-dpkg -i cuda-keyring_1.1-1_all.deb
-rm cuda-keyring_1.1-1_all.deb
-add-apt-repository contrib
-apt-get update
-apt-get install -y --no-install-recommends cuda-toolkit-12-4
-apt-get install -y --no-install-recommends nvidia-kernel-open-dkms
-apt-get install -y --no-install-recommends nvidia-driver
-
 apt-get clean
 rm -rf /var/lib/apt/lists/*

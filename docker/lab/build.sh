@@ -3,7 +3,7 @@
 set -e
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
-curl -sSf https://rye-up.com/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--yes" bash
+curl -sSf https://rye-up.com/get | RYE_TOOLCHAIN_VERSION="3.12" RYE_INSTALL_OPTION="--yes" bash
 
 . $HOME/.rye/env
 

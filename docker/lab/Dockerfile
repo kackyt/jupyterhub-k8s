@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bullseye
+FROM nvidia/cuda:12.3.2-devel-ubuntu22.04
 
 ENV USER app
 ENV DEBIAN_FRONTEND noninteractive
