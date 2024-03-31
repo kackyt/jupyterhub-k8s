@@ -2,12 +2,11 @@ FROM python:3.12-slim-bookworm
 
 ENV USER app
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl nodejs npm libgl1-mesa-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+WORKDIR /root
 
-RUN useradd -m -s /bin/bash -u 1000 app
+COPY ./build_root.sh /root
+
+RUN bash ./build_root.sh
 
 ENV HOME /home/${USER}
 ENV RYE_HOME ${HOME}/.rye
