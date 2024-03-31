@@ -12,6 +12,7 @@ apt-get update && \
     zlib1g-dev liblzma-dev libbz2-dev libreadline-dev \
     libicu-dev \
     libjpeg-dev libtiff-dev \
+    software-properties-common \
     nodejs npm libgl1-mesa-dev libglib2.0-0 libopencv-dev
 
 useradd -m -s /bin/bash -u 1000 app
@@ -22,14 +23,15 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud
     apt-get update -y && \
     apt-get install google-cloud-cli -y --no-install-recommends
 
-
 # install Nvidia driver
-
-BASE_URL=https://us.download.nvidia.com/tesla
-# 確認したバージョンを指定
-DRIVER_VERSION=535.129.03
-curl -fSsl -O ${BASE_URL}/${DRIVER_VERSION}/NVIDIA-Linux-x86_64-${DRIVER_VERSION}.run
-bash NVIDIA-Linux-x86_64-${DRIVER_VERSION}.run
+curl -fSsl -O https://developer.download.nvidia.com/compute/cuda/repos/debian11/x86_64/cuda-keyring_1.1-1_all.deb
+dpkg -i cuda-keyring_1.1-1_all.deb
+rm cuda-keyring_1.1-1_all.deb
+add-apt-repository contrib
+apt-get update
+apt-get install -y --no-install-recommends cuda-toolkit-12-4
+apt-get install -y --no-install-recommends nvidia-kernel-open-dkms
+apt-get install -y --no-install-recommends nvidia-driver
 
 apt-get clean
 rm -rf /var/lib/apt/lists/*

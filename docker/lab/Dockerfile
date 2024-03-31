@@ -1,6 +1,7 @@
-FROM python:3.12-slim-bookworm
+FROM python:3.12-slim-bullseye
 
 ENV USER app
+ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /root
 
