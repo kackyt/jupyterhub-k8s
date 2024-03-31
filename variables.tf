@@ -29,3 +29,7 @@ variable "auth0_client_secret" {
 variable "admin_users" {
   type = list(string)
 }
+
+variable "ml_image" {
+  type = string
+}

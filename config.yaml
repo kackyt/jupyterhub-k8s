@@ -433,7 +433,34 @@ singleuser:
   cmd: jupyterhub-singleuser # "jupyter lab --no-browser --ip '*' --allow-root --ServerApp.token=''"
   defaultUrl:
   extraPodConfig: {}
-  profileList: []
+  profileList:
+    - display_name: "Minimal environment"
+      description: "To avoid too much bells and whistles: Python."
+      default: true
+    - display_name: "GPU small"
+      description: "Small GPU environment."
+      kubespawner_override:
+        image: "${ml_image}"
+        cpu_limit: 7
+        cpu_guarantee: 7
+        mem_limit: "20G"
+        mem_guarantee: "20G"
+        extra_resource_limits:
+          nvidia.com/gpu: "1"
+        node_selector:
+          cloud.google.com/gke-accelerator: "nvidia-tesla-t4"
+    - display_name: "GPU train"
+      description: "GPU environment for training."
+      kubespawner_override:
+        image: "${ml_image}"
+        cpu_limit: 7
+        cpu_guarantee: 7
+        mem_limit: "20G"
+        mem_guarantee: "20G"
+        extra_resource_limits:
+          nvidia.com/gpu: "1"
+        node_selector:
+          cloud.google.com/gke-accelerator: "nvidia-tesla-v100"
 
 # scheduling relates to the user-scheduler pods and user-placeholder pods.
 scheduling:

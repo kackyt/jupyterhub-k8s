@@ -25,6 +25,7 @@ resource "helm_release" "jupyterhub" {
     auth0_client_id     = var.auth0_client_id
     auth0_client_secret = var.auth0_client_secret
     admin_users         = jsonencode(var.admin_users)
+    ml_image            = var.ml_image
   })]
   depends_on = [
     kubernetes_namespace.ml
