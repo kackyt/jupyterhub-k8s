@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 apt-get update && \
     apt-get install -y --no-install-recommends curl \
     zip unzip \
@@ -13,9 +15,13 @@ apt-get update && \
     libicu-dev \
     libjpeg-dev libtiff-dev \
     software-properties-common \
-    nodejs npm libgl1-mesa-dev libglib2.0-0 libopencv-dev
+    libgl1-mesa-dev libglib2.0-0 libopencv-dev
 
 useradd -m -s /bin/bash -u 1000 app
+
+# nodejsインストール
+curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+apt-get update && apt-get install -y --no-install-recommends nodejs
 
 # Cloud SDKインストール
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
