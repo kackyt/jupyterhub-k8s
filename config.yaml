@@ -408,10 +408,10 @@ singleuser:
     static:
       pvcName:
       subPath: "{username}"
-    capacity: 10Gi
+    capacity: 100Gi
     homeMountPath: /home/app/share
     dynamic:
-      storageClass:
+      storageClass: premium-rwo
       pvcNameTemplate: claim-{username}{servername}
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
