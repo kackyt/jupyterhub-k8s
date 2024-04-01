@@ -12,6 +12,8 @@ HTTP_TIMEOUT=86400 rye sync --no-dev --no-lock --verbose
 
 . .venv/bin/activate
 
+uv pip install --build-isolation xformers
+
 jupyter lab build --dev-build=False --minimize=False
 
 echo "source $HOME/.cargo/env" >> $HOME/.bash_profile

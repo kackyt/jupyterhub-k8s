@@ -3,7 +3,7 @@
 set -e
 
 apt-get update && \
-    apt-get install -y --no-install-recommends curl \
+    apt-get install -y --no-install-recommends curl git \
     zip unzip \
     libffi-dev libssl-dev \
     python3-crcmod \
