@@ -13,7 +13,12 @@ HTTP_TIMEOUT=86400 rye sync --no-dev --no-lock
 
 . .venv/bin/activate
 
-uv pip install --no-build-isolation xformers
+rye config --set-bool behavior.use-uv=false
+rye add xformers
+rye config --set-bool behavior.use-uv=true
+rye lock
+rye config --set-bool behavior.use-uv=false
+rye sync --no-lock
 
 jupyter lab build --dev-build=False --minimize=False
 
