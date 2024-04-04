@@ -46,7 +46,7 @@ babel==2.14.0
     # via jupyterlab-server
 beautifulsoup4==4.12.3
     # via nbconvert
-bitsandbytes==0.35.0
+bitsandbytes==0.43.0
     # via lab
 bleach==6.1.0
     # via nbconvert
@@ -68,7 +68,7 @@ click==8.1.7
     # via uvicorn
 comm==0.2.2
     # via ipykernel
-contourpy==1.2.0
+contourpy==1.2.1
     # via matplotlib
 cryptography==42.0.5
     # via pyopenssl
@@ -88,7 +88,7 @@ enum-compat==0.0.3
     # via torch-model-archiver
 executing==2.0.1
     # via stack-data
-fastapi==0.110.0
+fastapi==0.110.1
     # via gradio
 fastjsonschema==2.19.1
     # via nbformat
@@ -147,9 +147,9 @@ googleapis-common-protos==1.63.0
     # via google-api-core
     # via grpc-google-iam-v1
     # via grpcio-status
-gradio==4.24.0
+gradio==4.25.0
     # via lab
-gradio-client==0.14.0
+gradio-client==0.15.0
     # via gradio
 greenlet==3.0.3
     # via sqlalchemy
@@ -270,7 +270,7 @@ markupsafe==2.1.5
     # via jinja2
     # via mako
     # via nbconvert
-matplotlib==3.8.3
+matplotlib==3.8.4
     # via gradio
 matplotlib-inline==0.1.6
     # via ipykernel
@@ -307,6 +307,7 @@ notebook-shim==0.2.4
 numpy==1.26.4
     # via accelerate
     # via altair
+    # via bitsandbytes
     # via contourpy
     # via diffusers
     # via gradio
@@ -499,7 +500,7 @@ ruamel-yaml==0.18.6
     # via jupyter-telemetry
 ruamel-yaml-clib==0.2.8
     # via ruamel-yaml
-ruff==0.3.4
+ruff==0.3.5
     # via gradio
 safetensors==0.4.2
     # via accelerate
@@ -510,6 +511,8 @@ semantic-version==2.10.0
     # via gradio
 send2trash==1.8.2
     # via jupyter-server
+setuptools==69.2.0
+    # via lab
 shapely==2.0.3
     # via google-cloud-aiplatform
 shellingham==1.5.4
@@ -531,7 +534,7 @@ sqlalchemy==2.0.29
     # via jupyterhub
 stack-data==0.6.3
     # via ipython
-starlette==0.36.3
+starlette==0.37.2
     # via fastapi
 sympy==1.12
     # via torch
@@ -548,6 +551,7 @@ toolz==0.12.1
     # via altair
 torch==2.2.2
     # via accelerate
+    # via bitsandbytes
     # via lab
     # via torchaudio
     # via torchvision
