@@ -5,14 +5,15 @@ set -e
 curl -LsSf https://astral.sh/uv/install.sh | sh
 curl -sSf https://rye-up.com/get | RYE_TOOLCHAIN_VERSION="3.12" RYE_INSTALL_OPTION="--yes" bash
 
+. $HOME/.cargo/env
 . $HOME/.rye/env
 
 rye config --set-bool behavior.use-uv=true
-HTTP_TIMEOUT=86400 rye sync --no-dev --no-lock --verbose
+HTTP_TIMEOUT=86400 rye sync --no-dev --no-lock
 
 . .venv/bin/activate
 
-uv pip install --build-isolation xformers
+uv pip install --no-build-isolation xformers
 
 jupyter lab build --dev-build=False --minimize=False
 
