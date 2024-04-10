@@ -46,6 +46,7 @@ hub:
         - openid
         - email
     JupyterHub:
+      shutdown_on_logout: true 
       admin_access: true
       authenticator_class: auth0
   service:
@@ -408,7 +409,7 @@ singleuser:
     static:
       pvcName:
       subPath: "{username}"
-    capacity: 100Gi
+    capacity: 40Gi
     homeMountPath: /home/app/share
     dynamic:
       storageClass: premium-rwo
