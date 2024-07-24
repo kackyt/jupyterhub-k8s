@@ -46,6 +46,7 @@ hub:
         - openid
         - email
     JupyterHub:
+      shutdown_on_logout: true 
       admin_access: true
       authenticator_class: auth0
   service:
@@ -375,7 +376,7 @@ singleuser:
     blockWithIptables: true
     ip: 169.254.169.254
   networkPolicy:
-    enabled: true
+    enabled: false
     ingress: []
     egress: []
     egressAllowRules:
@@ -408,17 +409,17 @@ singleuser:
     static:
       pvcName:
       subPath: "{username}"
-    capacity: 10Gi
-    homeMountPath: /home/jovyan
+    capacity: 40Gi
+    homeMountPath: /home/app/share
     dynamic:
-      storageClass:
+      storageClass: premium-rwo
       pvcNameTemplate: claim-{username}{servername}
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: quay.io/jupyterhub/k8s-singleuser-sample
-    tag: "3.2.1"
-    pullPolicy:
+    name: kackyt/jupyterhub-singleuser-ai
+    tag: "feature-ai-image"
+    pullPolicy: Always
     pullSecrets: []
   startTimeout: 300
   cpu:
@@ -430,10 +431,37 @@ singleuser:
   extraResource:
     limits: {}
     guarantees: {}
-  cmd: jupyterhub-singleuser
+  cmd: jupyterhub-singleuser # "jupyter lab --no-browser --ip '*' --allow-root --ServerApp.token=''"
   defaultUrl:
   extraPodConfig: {}
-  profileList: []
+  profileList:
+    - display_name: "Minimal environment"
+      description: "To avoid too much bells and whistles: Python."
+      default: true
+    - display_name: "GPU small"
+      description: "Small GPU environment."
+      kubespawner_override:
+        image: "${ml_image}"
+        cpu_limit: 7
+        cpu_guarantee: 7
+        mem_limit: "20G"
+        mem_guarantee: "20G"
+        extra_resource_limits:
+          nvidia.com/gpu: "1"
+        node_selector:
+          cloud.google.com/gke-accelerator: "nvidia-tesla-t4"
+    - display_name: "GPU train"
+      description: "GPU environment for training."
+      kubespawner_override:
+        image: "${ml_image}"
+        cpu_limit: 7
+        cpu_guarantee: 7
+        mem_limit: "20G"
+        mem_guarantee: "20G"
+        extra_resource_limits:
+          nvidia.com/gpu: "1"
+        node_selector:
+          cloud.google.com/gke-accelerator: "nvidia-tesla-v100"
 
 # scheduling relates to the user-scheduler pods and user-placeholder pods.
 scheduling:
